@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>加载本地json文件</title>
+<meta charset="utf-8">
+<script type="text/javascript" src="js/jquery-1.9.1.js"></script>
+</head>
+<body>
+	<button id="test-btn">点我测试</button>
+	<table border="1 solid red" cellspacing="0" cellpadding="0">
+		<thead>
+			<tr>
+				<td>姓名</td>
+				<td>年龄</td>
+				<td>地址</td>
+			</tr>
+		</thead>
+		<tbody id="per_tab">
+		</tbody>
+	</table>
+	
+</body>
+
+<script type="text/javascript">
+$("#test-btn").on('click', function() {
+	//alert("hello");
+	$.ajax({
+		url: 'json/demo.json',
+		type: 'get',
+		dataType: 'json',
+		success: function (data) {
+			var per = data;
+			var htmlStr = "";
+			per.forEach(function (item, index) {
+				htmlStr += "<tr>";
+				htmlStr += "<td>" + item.name + "</td>";
+				htmlStr += "<td>" + item.age + "</td>";
+				htmlStr += "<td>" + item.address + "</td>";
+				htmlStr += "</tr>";
+			});
+			$("#per_tab").html(htmlStr);
+		}
+	});
+});
+
+</script>
+
+</html>
